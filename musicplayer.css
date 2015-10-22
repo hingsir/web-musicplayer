@@ -1,14 +1,13 @@
 #J_music_player_control{
     width: 180px;
+    padding: 10px;
     background: #44b19c;
     color:#fff;
-    padding: 10px;
     text-align: center;
 }
 #J_music_player_control a{
     margin:0 5px;
     text-decoration: none;
-    text-indent: -1000px;
 }
 #J_music_player_control a:hover{
     color:#fff;
