@@ -65,7 +65,11 @@
         },
         renderMusicPlayer: function(songList) {
             var self = this;
-            self.container.innerHTML = '<a id="J_music_player_btn_prev" href="#">上一首</a> <a id="J_music_player_btn_play" href="#">播放</a> <a id="J_music_player_btn_next" href="#">下一首</a>';
+            self.container.innerHTML = '<div id="J_music_player_control">'
+                + '<a id="J_music_player_btn_prev" href="#">上一首</a>'
+                + '<a id="J_music_player_btn_play" href="#">播放</a>'
+                + '<a id="J_music_player_btn_next" href="#">下一首</a>'
+                + '</div>';
             self.bindEvents();
             self.songNum = songList.length;
             self.songList = songList;
@@ -94,6 +98,7 @@
         },
         prev: function() {
             var self = this;
+            self.autoplay = true;
             if (self.currIndex == 0) {
                 self.playByIndex(self.songNum - 1);
             } else {
@@ -103,6 +108,7 @@
         },
         next: function() {
             var self = this;
+            self.autoplay = true;
             if (self.currIndex == self.songNum - 1) {
                 self.playByIndex(0);
             } else {
