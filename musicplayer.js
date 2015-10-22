@@ -17,9 +17,7 @@
             song = songList.data.songList[i];
             song.songLink && songlinks.push(song.songLink);
         }
-        window.MUSICPLAYER_SONG_LINKS = songlinks.sort(function() {
-            return Math.random() > 0.5;
-        });
+        window.MUSICPLAYER_SONG_LINKS = songlinks;
     }
 
     function MusicPlayer(options) {
@@ -37,7 +35,9 @@
         render: function() {
             var self = this;
             if (self.songList.length > 0) {
-                return self.renderMusicPlayer(songList);
+                return self.renderMusicPlayer(self.songList.sort(function() {
+                    return Math.random() > 0.5;
+                }));
             }
             var script = document.createElement('script');
             script.src = 'http://tingapi.ting.baidu.com/v1/restserver/ting?from=webapp_music&method=baidu.ting.billboard.billList&type=2&format=json&callback=songListHandle';
@@ -126,7 +126,7 @@
             })
             source = document.createElement('source')
             source.id = 'J_music_player_source';
-            source.src = window.MUSICPLAYER_SONG_LINKS[songIndex];
+            source.src = self.songList[songIndex];
             video.appendChild(source);
             document.body.appendChild(video);
             self.currIndex = songIndex;
