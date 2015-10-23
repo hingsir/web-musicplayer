@@ -1,13 +1,15 @@
 @font-face {font-family: "iconfont";
-  src: url('iconfont/iconfont.eot'); /* IE9*/
-  src: url('iconfont/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont/iconfont.woff') format('woff'), /* chrome、firefox */
-  url('iconfont/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  url('iconfont/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont2/iconfont.eot'); /* IE9*/
+  src: url('iconfont2/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont2/iconfont.woff') format('woff'), /* chrome、firefox */
+  url('iconfont2/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('iconfont2/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
 #J_music_player_control{
-    width: 200px;
     padding: 10px 5px;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
     background: #44b19c;
     color:#fff;
     text-align: center;
@@ -17,7 +19,7 @@
     font-family:"iconfont" !important;
     font-size:48px;
     font-style:normal;
-    height: 48px;
+    height: 49px;
     width: 48px;
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
@@ -31,12 +33,13 @@
 }
 #J_music_player_btn_prev,#J_music_player_btn_next{
     color:#e3e3e3;
+    font-size:42px !important;
 }
 #J_music_player_btn_play{
     color: #fff;
 }
 
-#J_music_player_btn_play:before { content: "\e62e"; }
-#J_music_player_btn_next:before { content: "\e631"; }
-#J_music_player_btn_prev:before { content: "\e632"; }
-#J_music_player_btn_play.played:before { content: "\e62f"; }
+#J_music_player_btn_play:before { content: "\e620"; }
+#J_music_player_btn_next:before { content: "\f0015"; }
+#J_music_player_btn_prev:before { content: "\f0016"; }
+#J_music_player_btn_play.played:before { content: "\e61f"; }
