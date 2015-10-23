@@ -66,9 +66,9 @@
         renderMusicPlayer: function(songList) {
             var self = this;
             self.container.innerHTML = '<div id="J_music_player_control">'
-                + '<a id="J_music_player_btn_prev" href="#">上一首</a>'
-                + '<a id="J_music_player_btn_play" href="#">播放</a>'
-                + '<a id="J_music_player_btn_next" href="#">下一首</a>'
+                + '<a id="J_music_player_btn_prev" href="javascript:;">上一首</a>'
+                + '<a id="J_music_player_btn_play" href="javascript:;">播放</a>'
+                + '<a id="J_music_player_btn_next" href="javascript:;">下一首</a>'
                 + '</div>';
             self.bindEvents();
             self.songNum = songList.length;
