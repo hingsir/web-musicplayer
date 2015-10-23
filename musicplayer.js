@@ -118,25 +118,25 @@
         },
         playByIndex: function(songIndex) {
             var self = this;
-            var video = document.getElementById('J_music_player'),
+            var audio = document.getElementById('J_music_player'),
                 source;
-            if (video) {
-                document.body.removeChild(video);
+            if (audio) {
+                document.body.removeChild(audio);
             }
-            video = document.createElement('video');
-            video.id = 'J_music_player';
-            video.autoplay = self.autoplay;
-            video.style.display = 'none';
-            Event.bind(video, 'ended', function() {
+            audio = document.createElement('audio');
+            audio.id = 'J_music_player';
+            audio.autoplay = self.autoplay;
+            audio.style.display = 'none';
+            Event.bind(audio, 'ended', function() {
                 self.next();
             })
             source = document.createElement('source')
             source.id = 'J_music_player_source';
             source.src = self.songList[songIndex];
-            video.appendChild(source);
-            document.body.appendChild(video);
+            audio.appendChild(source);
+            document.body.appendChild(audio);
             self.currIndex = songIndex;
-            self.player = video;
+            self.player = audio;
         },
         pause: function() {
             var self = this;
