@@ -1,20 +1,42 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont/iconfont.eot'); /* IE9*/
+  src: url('iconfont/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont/iconfont.woff') format('woff'), /* chrome、firefox */
+  url('iconfont/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('iconfont/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
 #J_music_player_control{
-    width: 180px;
-    padding: 10px;
+    width: 200px;
+    padding: 10px 5px;
     background: #44b19c;
     color:#fff;
     text-align: center;
 }
 #J_music_player_control a{
+    display: inline-block;
+    font-family:"iconfont" !important;
+    font-size:48px;
+    font-style:normal;
+    height: 48px;
+    width: 48px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
     margin:0 5px;
     text-decoration: none;
+    overflow: hidden;
 }
 #J_music_player_control a:hover{
     color:#fff;
 }
 #J_music_player_btn_prev,#J_music_player_btn_next{
-    color:#e2e2e2;
+    color:#e3e3e3;
 }
 #J_music_player_btn_play{
     color: #fff;
 }
+
+#J_music_player_btn_play:before { content: "\e62e"; }
+#J_music_player_btn_next:before { content: "\e631"; }
+#J_music_player_btn_prev:before { content: "\e632"; }
+#J_music_player_btn_play.played:before { content: "\e62f"; }
