@@ -36,7 +36,7 @@
             var self = this;
             if (self.songList.length > 0) {
                 return self.renderMusicPlayer(self.songList.sort(function() {
-                    return Math.random() > 0.5;
+                    return Math.random() > 0.5 ? 1 : -1;
                 }));
             }
             var script = document.createElement('script');
