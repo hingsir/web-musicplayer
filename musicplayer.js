@@ -1,25 +1,5 @@
 (function(window, document, undefined) {
 
-
-    window.songListHandle = function(songList) {
-        var songIds = [],
-            i, song;
-        for (i = 0; i < songList.song_list.length; i++) {
-            song = songList.song_list[i];
-            songIds.push(song.song_id);
-        }
-        window.MUSICPLAYER_SONG_IDS = songIds;
-    }
-    window.songLinkHandle = function(songList) {
-        var songlinks = [],
-            i, song;
-        for (i = 0; i < songList.data.songList.length; i++) {
-            song = songList.data.songList[i];
-            song.songLink && songlinks.push(song.songLink);
-        }
-        window.MUSICPLAYER_SONG_LINKS = songlinks;
-    }
-
     function MusicPlayer(options) {
         this.container = options.container;
         this.songList = options.songList || [];
@@ -35,33 +15,10 @@
         render: function() {
             var self = this;
             if (self.songList.length > 0) {
-                return self.renderMusicPlayer(self.songList.sort(function() {
-                    return Math.random() > 0.5 ? 1 : -1;
-                }));
+                return self.renderMusicPlayer(self.songList);
+            }else{
+                throw 'no songs provided'
             }
-            var script = document.createElement('script');
-            script.src = 'http://tingapi.ting.baidu.com/v1/restserver/ting?from=webapp_music&method=baidu.ting.billboard.billList&type=2&format=json&callback=songListHandle';
-            script.onerror = function() {
-                throw new Error('baidu music api error.');
-            }
-            script.onload = script.onreadystatechange = function() {
-                if (!this.readyState || /loaded|complete/.test(this.readyState)) {
-                    this.onload = this.onreadystatechange = null;
-                    var songLinkScript = document.createElement('script');
-                    songLinkScript.src = 'http://music.baidu.com/data/music/links?callback=songLinkHandle&songIds=' + window.MUSICPLAYER_SONG_IDS.join(',');
-                    songLinkScript.onerror = function() {
-                        throw new Error('baidu music api error.');
-                    }
-                    songLinkScript.onload = songLinkScript.onreadystatechange = function() {
-                        if (!this.readyState || /loaded|complete/.test(this.readyState)) {
-                            this.onload = this.onreadystatechange = null;
-                            self.renderMusicPlayer(window.MUSICPLAYER_SONG_LINKS);
-                        }
-                    }
-                    document.body.appendChild(songLinkScript);
-                }
-            }
-            document.body.appendChild(script);
         },
         renderMusicPlayer: function(songList) {
             var self = this;
@@ -118,23 +75,18 @@
         },
         playByIndex: function(songIndex) {
             var self = this;
-            var audio = document.getElementById('J_music_player'),
-                source;
-            if (audio) {
-                document.body.removeChild(audio);
+            var audio = document.getElementById('J_music_player');
+            if (!audio) {
+                audio = document.createElement('audio');
+                audio.id = 'J_music_player';
+                audio.style.display = 'none';
+                Event.bind(audio, 'ended', function() {
+                    self.next();
+                })
+                document.body.appendChild(audio);
             }
-            audio = document.createElement('audio');
-            audio.id = 'J_music_player';
             audio.autoplay = self.autoplay;
-            audio.style.display = 'none';
-            Event.bind(audio, 'ended', function() {
-                self.next();
-            })
-            source = document.createElement('source')
-            source.id = 'J_music_player_source';
-            source.src = self.songList[songIndex];
-            audio.appendChild(source);
-            document.body.appendChild(audio);
+            audio.src = self.songList[songIndex];
             self.currIndex = songIndex;
             self.player = audio;
         },

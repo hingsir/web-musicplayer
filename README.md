@@ -1,8 +1,9 @@
 # web-musicplayer
-音乐播放器，百度音乐没权限，只能播放自己服务器上的歌曲。。。
-###[演示地址](http://hingsir.com/web-musicplayer/)
+> 简单的音乐播放器
 
-###Usage
+### [演示地址](http://hingsir.com/web-musicplayer/)
+
+### Usage
 ```js
 new MusicPlayer({
     container : document.getElementById('player'),
